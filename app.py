@@ -34,5 +34,6 @@ for name, module in list(sys.modules.items()):
         if "modelbench-source-" in filename and not filename.startswith(str(source_root) + os.sep):
             del sys.modules[name]
 
-sys.path.insert(0, str(source_root)) if str(source_root) not in sys.path else None
+if str(source_root) not in sys.path:
+    sys.path.insert(0, str(source_root))
 runpy.run_path(str(source_root / "app.py"), run_name="__main__")
